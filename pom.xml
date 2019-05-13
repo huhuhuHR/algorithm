@@ -6,7 +6,18 @@
 
     <groupId>com.github</groupId>
     <artifactId>algorithm</artifactId>
+    <packaging>pom</packaging>
     <version>1.1</version>
-
+    <modules>
+        <module>code</module>
+    </modules>
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.11</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 </project>
