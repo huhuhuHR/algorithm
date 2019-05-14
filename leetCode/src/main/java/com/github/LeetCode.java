@@ -50,5 +50,18 @@ public class LeetCode {
         System.out.println(question.addTwoNumbers(l1, l2));
     }
 
+    /**
+     * 无重复字符的最长子串
+     * <p>
+     * 给定一个字符串，请你找出其中不含有重复字符的最长子串长度。
+     */
+    @Test
+    public void code3() {
+        String str = "abcba";
+        long s = System.currentTimeMillis();
+        System.out.println(question.lengthOfLongestSubstring1(str));
+        System.out.println(System.currentTimeMillis() - s);
+    }
+
 
 }

@@ -1,7 +1,11 @@
 package com.github;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class Question {
     public int[] twoSum0(int[] nums, int target) {
@@ -77,5 +81,63 @@ public class Question {
             cursor.next = new ListNode(carry);
         }
         return dummyHead.next;
+    }
+
+    public int lengthOfLongestSubstring(String s) {
+        int n = s.length();
+        Set<Character> set = new HashSet<>();
+        int ans = 0, i = 0, j = 0;
+        while (i < n && j < n) {
+            // try to extend the range [i, j]
+            if (!set.contains(s.charAt(j))) {
+                set.add(s.charAt(j++));
+                ans = Math.max(ans, j - i);
+            } else {
+                set.remove(s.charAt(i++));
+            }
+        }
+        return ans;
+    }
+
+    // 最快
+    public int lengthOfLongestSubstring1(String s) {
+        int n = s.length();
+        int ans = 0;
+        // key char value index
+        Map<Character, Integer> map = new HashMap<>();
+        // current index of character
+        // try to extend the range [i, j]
+        int leftIndex = 0;
+        char key;
+        for (int j = 0; j < n; j++) {
+            key = s.charAt(j);
+            if (map.containsKey(key)) {
+                // 更新左边界
+                leftIndex = Math.max(map.get(key) + 1, leftIndex);
+            }
+            ans = Math.max(ans, j - leftIndex + 1);
+            map.put(key, j);
+        }
+        return ans;
+    }
+
+    // 超时
+    public int lengthOfLongestSubstring2(String s) {
+        List<Character> list = new ArrayList<>();
+        int ans = 0;
+        char c;
+        for (int i = 0; i < s.length(); i++) {
+            c = s.charAt(i);
+            int index = list.indexOf(c);
+            if (index == -1) {
+                list.add(c);
+                ans = Math.max(ans, list.size());
+            } else {
+                list = list.subList(index + 1, list.size());
+                list.add(c);
+                ans = Math.max(ans, list.size());
+            }
+        }
+        return ans;
     }
 }
