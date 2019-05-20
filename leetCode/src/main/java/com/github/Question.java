@@ -140,4 +140,103 @@ public class Question {
         }
         return ans;
     }
+
+    public String longestPalindrome(String s) {
+        if (s == null || s.length() < 1) {
+            return "";
+        }
+        String sub;
+        int start = 0;
+        int end = 0;
+        int length = 1;
+        for (int i = 0; i < s.length() - 1; i++) {
+            for (int j = i + length; j < s.length(); j++) {
+                sub = s.substring(i, j + 1);
+                if (check(sub)) {
+                    length = j - i + 1;
+                    start = i;
+                    end = j + 1;
+                }
+            }
+        }
+        if (length == 1) {
+            return String.valueOf(s.charAt(0));
+        }
+        return s.substring(start, end);
+    }
+
+    public boolean check(String sub) {
+        String reverse = new StringBuilder(sub).reverse().toString();
+        return reverse.equals(sub);
+    }
+
+    public String longestPalindrome1(String s) {
+        if (s == null || s.length() < 1) {
+            return "";
+        }
+        int start = 0, end = 0;
+        for (int i = 0; i < s.length(); i++) {
+            int len1 = expandAroundCenter(s, i, i);
+            int len2 = expandAroundCenter(s, i, i + 1);
+            int len = Math.max(len1, len2);
+            if (len > end - start) {
+                start = i - (len - 1) / 2;
+                end = i + len / 2;
+            }
+        }
+        return s.substring(start, end + 1);
+    }
+
+    public int expandAroundCenter(String s, int left, int right) {
+        int L = left, R = right;
+        while (L >= 0 && R < s.length() && s.charAt(L) == s.charAt(R)) {
+            L--;
+            R++;
+        }
+        return R - L - 1;
+    }
+
+    public String longestPalindrome2(String s) {
+        if (s == null) {
+            return "";
+        }
+        int size = s.length();
+        int i = 0;
+        int j = size - 1;
+        while (i < j) {
+            if (s.charAt(i) == s.charAt(j)) {
+                if (check(s.substring(i, j + 1))) {
+                    return s.substring(i, j + 1);
+                }
+            }
+
+            i++;
+            j--;
+        }
+        if (i == j) {
+            return String.valueOf(s.charAt(0));
+        }
+        return s.substring(i, j + 1);
+    }
+
+    public int reverse(int x) {
+        int rev = 0;
+        while (x != 0) {
+            // 取现存最后一位
+            int pop = x % 10;
+            // 取现存除最后一位
+            x /= 10;
+            // 2147483647
+            if (rev > Integer.MAX_VALUE / 10 || (rev == Integer.MAX_VALUE / 10 && pop > 7)) {
+                return 0;
+            }
+            // -2147483648
+            if (rev < Integer.MIN_VALUE / 10 || (rev == Integer.MIN_VALUE / 10 && pop < -8)) {
+                return 0;
+            }
+            rev = rev * 10 + pop;
+        }
+        return rev;
+    }
+
 }
