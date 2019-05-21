@@ -239,4 +239,42 @@ public class Question {
         return rev;
     }
 
+    /**
+     * 判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。
+     *
+     * @param x
+     * @return
+     */
+    public boolean isPalindrome(int x) {
+        if (x < 0) {
+            return false;
+        }
+        String s = String.valueOf(x);
+        int left = 0;
+        int right = s.length() - 1;
+        while (left < right) {
+            if (s.charAt(left++) != s.charAt(right--)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean isPalindrome1(int x) {
+        if (x < 0) {
+            return false;
+        } else if (x / 10 == 0) {
+            return true;
+        } else if (x % 10 == 0) {
+            return false;
+        }
+        int result = 0;
+        int left = x;
+        while (left != 0) {
+            result = 10 * result + left % 10;
+            left = left / 10;
+
+        }
+        return result == x;
+    }
 }

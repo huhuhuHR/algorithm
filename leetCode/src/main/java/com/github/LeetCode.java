@@ -83,18 +83,11 @@ public class LeetCode {
 
     }
 
-    /**
-     * 给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。
-     * <p>
-     * 示例 1:
-     * <p>
-     * 输入: 123
-     * 输出: 321
-     */
 
     @Test
     public void code5() {
-        System.out.println(question.reverse(-12));
+        int x = 12321;
+        System.out.println(question.isPalindrome1(x));
 
     }
 
