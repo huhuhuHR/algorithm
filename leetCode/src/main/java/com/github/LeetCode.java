@@ -2,7 +2,11 @@ package com.github;
 
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class LeetCode {
     Question question = new Question();
@@ -89,6 +93,48 @@ public class LeetCode {
         int x = 12321;
         System.out.println(question.isPalindrome1(x));
 
+    }
+
+
+    @Test
+    public void code6() {
+        String s = "MCMXCIV";
+        int result = question.romanToInt(s);
+        System.out.println(result);
+    }
+
+    Map<String, Integer> romanMap = new HashMap<>();{
+        romanMap.put("Z", 0);
+        romanMap.put("I", 1);
+        romanMap.put("V", 5);
+        romanMap.put("X", 10);
+        romanMap.put("L", 50);
+        romanMap.put("C", 100);
+        romanMap.put("D", 500);
+        romanMap.put("M", 1000);
+        romanMap.put("IV",4);
+        romanMap.put("IX",9);
+        romanMap.put("XL",40);
+        romanMap.put("XC",90);
+        romanMap.put("CD",500);
+        romanMap.put("CM",1000);
+    }
+
+    public int romanToInt(String s){
+        char c1;
+        int i1;
+        char c2;
+        int i2;
+        int result = 0;
+        String s1;
+        for (int i = 0; i < s.length(); ) {
+            c1 = s.charAt(i);
+            c2 = (i + 1) == s.length() ? 'Z' : s.charAt(i + 1);
+            if(){
+
+            }
+        }
+        return result;
     }
 
 
